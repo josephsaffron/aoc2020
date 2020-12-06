@@ -1,10 +1,6 @@
-const fs = require('fs');
-const fsPromises = fs.promises;
-
-async function part1() {
+exports.part1 = async(input) => {
 	let dict = {};
-	let file = await fsPromises.readFile('input.txt', 'utf8');
-	dict = Object.assign({}, ...file.split('\r\n').map(x => ({[x]: parseInt(x)})));
+	dict = Object.assign({}, ...input.map(x => ({[x]: parseInt(x)})));
 	for (let prop in dict) {
 		const balance = 2020 - parseInt(prop);
 		if (dict[`${balance}`]){
@@ -15,10 +11,9 @@ async function part1() {
 
 }
 
-async function part2() {
+exports.part2 = async(input) => {
 	let dict = {};
-	let file = await fsPromises.readFile('input.txt', 'utf8');
-	dict = Object.assign({}, ...file.split('\r\n').map(x => ({[x]: parseInt(x)})));
+	dict = Object.assign({}, ...input.map(x => ({[x]: parseInt(x)})));
 	for (let prop in dict) {
 		const balance = 2020 - parseInt(prop);
 		for (let subprop in dict){
@@ -31,6 +26,3 @@ async function part2() {
 	}
 
 }
-
-part2();
-part1();
